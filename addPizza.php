@@ -1,10 +1,4 @@
 <?php 
-    //if (isset($_GET['submit'])) {
-      //   htmlspecialchars(print_r($_GET));
-        // echo htmlspecialchars($_GET['email']);
-        // echo htmlspecialchars($_GET['title']);
-        // echo htmlspecialchars($_GET['ingredients']);
-    // }
 
     // Print $_POST Object;
     function getPOST() {
@@ -13,7 +7,7 @@
         echo '<br/>';
     }
 
-    // Email Validation
+    // Validates email and returns error to validateInputs function for handling
     function emailValidation() {
         $error = '';
         if (empty($_POST['email'])) {
@@ -28,6 +22,8 @@
         return $error;
     }
 
+    /* Checks to see if title consists of letters and spaces and returns error 
+    to validateInputs function for handling */
     function titleValidation() {
         $error = '';
         if (empty($_POST['title'])) {
@@ -42,6 +38,8 @@
         return $error;
     }
 
+    /* Checks to see if ingredients input are comma separated values and
+    returns our error message to our validateInputs function for handling */
     function validateIngredients() {
         $error = '';
         if (empty($_POST['ingredients'])) {
@@ -56,19 +54,18 @@
         return $error;
     }
 
+    /* Handles the errors from our validation functions, if there was an
+    invalid input then we handle the response to the client else return 
+    an empty string, returns errors in a dictionary to our script */
     function validateInputs() {
-        $errors = [
-            'email' => '',
-            'title' => '',
-            'ingredients' => ''
-        ];
+        $errors = [];
         $errors['email'] = emailValidation();
         $errors['title'] = titleValidation();
         $errors['ingredients'] = validateIngredients();
         return $errors;
     }
 
- # 1461 money order or cashiers check
+
 
     if (isset($_POST['submit'])) {
         getPOST();
