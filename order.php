@@ -5,9 +5,6 @@
     $ingredients = '';
     $errors = ['email'=>'', 'title'=>'', 'ingredients'=>''];
 
-    /* If we have already sent a POST request and are redirected back,
-    check for errors */
-
 
     /* Validates user inputs and if there are no errors then it redirects
     back to the homepage, else it will stay on page and keep state */
@@ -20,8 +17,7 @@
     }
 
     /* Handles the errors from our validation functions, if there was an
-    invalid input then we handle the response to the client else return 
-    an empty string, returns errors in a dictionary to our script */
+    invalid input then we update our error dictionary */
     function validateInputs(&$email, &$title, &$ingredients) {
         $errors['email'] = emailValidation($email);
         $errors['title'] = titleValidation($title);
@@ -46,8 +42,8 @@
         return $error;
     }
 
-    /* Sets title and checks to see if it consists of letters and spaces and
-    returns error to validateInputs function for handling */
+    /* Sets title and checks to see if it consists of letters and spaces
+    and returns error to validateInputs function */
     function titleValidation(&$title) {
         $error = '';
         if (empty($_POST['title'])) {
@@ -64,7 +60,7 @@
     }
 
     /* Checks to see if ingredients input are comma separated values and
-    returns our error message to our validateInputs function for handling */
+    returns our error message to our validateInputs function */
     function validateIngredients(&$ingredients) {
         $error = '';
         if (empty($_POST['ingredients'])) {
