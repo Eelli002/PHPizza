@@ -1,11 +1,7 @@
 <?php 
 
     /* Establishes connection to database and fetches all pizza orders */
-    $connection = mysqli_connect('localhost', 'Elijah', 'PHPizza123!', 'PHPizza');
-    if (!$connection) {
-        echo 'Failed to connect to MySQL: ' . mysqli_connect_error();
-        exit();
-    }
+    include('config/db_connect.php');
     $getAllPizzaOrders = 'SELECT title, toppings, id FROM pizzaOrders ORDER BY created_at';
     $result = mysqli_query($connection, $getAllPizzaOrders);
     if (!$result) {

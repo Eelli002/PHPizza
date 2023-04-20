@@ -6,13 +6,24 @@
     $errors = ['email'=>'', 'title'=>'', 'toppings'=>''];
 
 
-    /* Validates user inputs and if there are no errors then it redirects
-    back to the homepage, else it will stay on page and keep state */
+    /* Validates user inputs and if there are no errors then we save the
+    order to the database and redirect back to the homepage, else we 
+    will stay on page and keep state on valid inputs */
     if (isset($_POST['submit'])) {
         // getPOST();
         $errors = validateInputs($email, $title, $toppings);
         if (!array_filter($errors)) {
-            header('Location: index.php');
+            include('config/db_connect.php');
+            $email = mysqli_real_escape_string($connection, $email);
+            $title = mysqli_real_escape_string($connection, $title);
+            $toppings = mysqli_real_escape_string($connection, $toppings);
+            $orderPizzaQuery = "INSERT INTO pizzaOrders(email, title, toppings) VALUES ('$email', '$title', '$toppings')";
+            if (mysqli_query($connection, $orderPizzaQuery)) {
+                header('Location: index.php');
+            } 
+            else {
+                echo 'query error ' . mysqli_error($connection);
+            }
         }
     }
 
