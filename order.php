@@ -2,15 +2,15 @@
     // Upon initial page load we will have blank inputs thus no errors
     $email = '';
     $title = '';
-    $ingredients = '';
-    $errors = ['email'=>'', 'title'=>'', 'ingredients'=>''];
+    $toppings = '';
+    $errors = ['email'=>'', 'title'=>'', 'toppings'=>''];
 
 
     /* Validates user inputs and if there are no errors then it redirects
     back to the homepage, else it will stay on page and keep state */
     if (isset($_POST['submit'])) {
         // getPOST();
-        $errors = validateInputs($email, $title, $ingredients);
+        $errors = validateInputs($email, $title, $toppings);
         if (!array_filter($errors)) {
             header('Location: index.php');
         }
@@ -18,10 +18,10 @@
 
     /* Handles the errors from our validation functions, if there was an
     invalid input then we update our error dictionary */
-    function validateInputs(&$email, &$title, &$ingredients) {
+    function validateInputs(&$email, &$title, &$toppings) {
         $errors['email'] = emailValidation($email);
         $errors['title'] = titleValidation($title);
-        $errors['ingredients'] = validateIngredients($ingredients);
+        $errors['toppings'] = validateToppings($toppings);
         return $errors;
     }
 
@@ -59,18 +59,18 @@
         return $error;
     }
 
-    /* Checks to see if ingredients input are comma separated values and
+    /* Checks to see if toppings input are comma separated values and
     returns our error message to our validateInputs function */
-    function validateIngredients(&$ingredients) {
+    function validateToppings(&$toppings) {
         $error = '';
-        if (empty($_POST['ingredients'])) {
-            $error = 'At lease one ingredient is required';
+        if (empty($_POST['toppings'])) {
+            $error = 'At lease one topping is required';
         }
         else {
-            $ingredients = $_POST['ingredients'];
-            if (!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)) {
-                $error = 'Please list ingredients separated by a comma';
-                $ingredients = '';
+            $toppings = $_POST['toppings'];
+            if (!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $toppings)) {
+                $error = 'Please list toppings separated by a comma';
+                $toppings = '';
             }
         }
         return $error;
@@ -99,9 +99,9 @@
             <input type="text" name="title" value="<?php echo $title; ?>">
             <div class="red-text"><?php echo htmlspecialchars($errors['title']);?></div>
 
-            <label>Ingredient (comma separated):</label>
-            <input type="text" name="ingredients" value="<?php echo $ingredients; ?>">
-            <div class="red-text"><?php echo htmlspecialchars($errors['ingredients']);?></div>
+            <label>Toppings (comma separated):</label>
+            <input type="text" name="toppings" value="<?php echo $toppings; ?>">
+            <div class="red-text"><?php echo htmlspecialchars($errors['toppings']);?></div>
 
             <div class="center">
                 <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
