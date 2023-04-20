@@ -12,7 +12,7 @@
     mysqli_free_result($result);
     mysqli_close($connection);
 
-    print_r($pizzas);
+    // print_r($pizzas);
 ?>
 
 <!-- Will display all pizza orders in their own container with a link to each
@@ -41,7 +41,7 @@ order for more details -->
                                 </ul>
                             </div>
                             <div class="card-action right-align">
-                                <a href="#" class="brand-text">More Info</a>
+                                <a href="details.php?id=<?php echo $pizza['id']; ?>" class="brand-text">More Info</a>
                             </div>
                         </div>
                     </div><?php
