@@ -1,4 +1,6 @@
 <?php
+    /* Retrieves Single order based on URL parameter, authenicates it,
+    and prints if valid else throws error */
     include ('config/db_connect.php');
     if (isset($_GET['id'])) {
         $id = mysqli_real_escape_string($connection, $_GET['id']);
@@ -10,6 +12,7 @@
     }
 ?>
 
+ <!-- Display pizza order that was retrieved from DB -->
 <!DOCTYPE html>
 <html>
     <?php include('templates/header.php'); ?>
