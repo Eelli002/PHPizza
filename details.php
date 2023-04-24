@@ -1,12 +1,12 @@
 <?php
     /* Checks to see if a POST request has been made to delete a pizza,
-    if it does then it passes the id to deletePizza */
+    if it has then it passes the ID to deletePizza */
     if (isset($_POST['delete'])) {
         $delete_id = $_POST['delete_id'];
         deletePizza($delete_id);
     }
 
-    /* Checks to see if we have passed in an arguement for id, captures it
+    /* Checks to see if we have passed in an arguement for ID, captures it
     from the URL and sends it to our getPizza function to retrieve from database */
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -17,7 +17,7 @@
     it as an associative array. */
     function getPizza($id) {
         include ('config/db_connect.php');
-        $id = mysqli_real_escape_string($connection, $id);
+        $id = mysqli_real_escape_string($connection, $id); // Escapes special chars in ID param to prevent SQL i attacks
         $selectPizzaQuery = "SELECT * FROM pizzaOrders WHERE id = $id";
         $result = mysqli_query($connection, $selectPizzaQuery);
         if (!$result) {
@@ -42,6 +42,7 @@
             exit();
         }
         else {
+            mysqli_close($connection);
             header('Location: index.php');
         }
     }
