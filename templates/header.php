@@ -30,22 +30,22 @@
         </nav> -->
         <nav class="white">
         <div class="nav-wrapper container">
-            <a href="#" class="brand-logo grey-text text-darken-3">
+            <a href="/phpizza/index.php" class="brand-logo grey-text text-darken-3">
             PHPizza
             </a>
             <a href="#" data-target="mobile-menu" class="sidenav-trigger">
             <i class="material-icons orange-text">menu</i>
             </a>
             <ul class="right hide-on-med-and-down">
-            <li><a href="order.php" class="grey-text text-darken-3">Order</a></li>
-            <li><a href="login.php" class="grey-text text-darken-3">Login / Register</a></li>
+            <li><a href="/phpizza/order.php" class="grey-text text-darken-3">Order</a></li>
+            <li><a href="/phpizza/auth/auth.php" class="grey-text text-darken-3">Login / Register</a></li>
             </ul>
         </div>
         </nav>
 
         <ul class="sidenav" id="mobile-menu">
-        <li><a href="order.php" class="orange-text">Order</a></li>
-        <li><a href="login.php" class="orange-text">Login / Register</a></li>
+        <li><a href="/phpizza/order.php" class="orange-text">Order</a></li>
+        <li><a href="/phpizza/auth/auth.php" class="orange-text">Login / Register</a></li>
         </ul>
 
         <!-- On smaller displays we show a drop down menu with links to either
