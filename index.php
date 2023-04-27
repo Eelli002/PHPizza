@@ -1,27 +1,51 @@
 <?php 
-
-    /* Establishes connection to database and fetches all pizza orders */
+    session_start();
     include('config/db_connect.php');
-    $getAllPizzaOrders = 'SELECT title, toppings, id FROM pizzaOrders ORDER BY created_at';
-    $result = mysqli_query($connection, $getAllPizzaOrders);
-    if (!$result) {
-        echo 'Error executing query: ' . mysqli_error($connection);
-        exit();
-    }
-    $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    mysqli_free_result($result);
-    mysqli_close($connection);
 
-    // print_r($pizzas);
+    /* Currently if the user is logged in we will display all pizza orders
+    but will implement the functionaly to only display user's orders soon */
+    if ($_SESSION['loggedin']) {
+        $getAllPizzaOrders = 'SELECT title, toppings, id FROM pizzaOrders ORDER BY created_at';
+        $result = mysqli_query($connection, $getAllPizzaOrders);
+        if (!$result) {
+            echo 'Error executing query: ' . mysqli_error($connection);
+            exit();
+        }
+        $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        mysqli_free_result($result);
+    }
+    mysqli_close($connection);
 ?>
 
-<!-- Will display all pizza orders in their own container with a link to each
-order for more details -->
 <!DOCTYPE html>
 <html lang="en">
     <?php include('templates/header.php'); ?>
-    <h4 class="center grey-text">Pizza Orders</h4>
     <div class="container">
+        <?php if ($_SESSION['loggedin']): ?>
+            <h4 class="center grey-text">Your Pizza Orders</h4>
+        <?php else: ?>
+            <h4 class="center grey-text">Pizza Specials</h4>
+            <p class="center">Check out our latest pizza specials and login or register to order.</p>
+            <div class="row">
+                <div class="col s12 m6 offset-m3">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title center">Welcome to PHPizza!</span>
+                            <p class="center">Please log in or register to continue.</p>
+                            <div class="row center">
+                                <div class="col s12 m6">
+                                    <a href="auth/login.php" class="btn orange waves-effect waves-light">Log in</a>
+                                </div>
+                                <div class="col s12 m6">
+                                    <a href="auth/register.php" class="btn blue-grey waves-effect waves-light">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
         <div class="row">
             <?php 
                 foreach($pizzas as $pizza) { ?>
@@ -34,7 +58,7 @@ order for more details -->
                                     <?php
                                         // Here we cycle through our CSV toppings and out each
                                         $toppings = explode(',', $pizza['toppings']);
-                                        foreach($toppings as $topping) { ?>
+                                        foreach($toppings as $topping) { ?> 
                                             <li><?php echo htmlspecialchars($topping); ?></li> <?php
                                         } 
                                     ?>

@@ -7,6 +7,7 @@
     errors or the email and password do not match a user in the 
     database we display an error message. */
     session_start();
+    
     $email = "";
     $password = "";
     $errors = ['email'=>'', 'password'=>''];
@@ -20,11 +21,8 @@
                 header("Location: /PHPizza/index.php");
                 exit;
             }
-            else {
-                $error = 'Invalid email or password.';
-            } 
+            $error = 'Invalid email or password.';
         }
-        
     }
 
 
@@ -92,7 +90,8 @@
         }
         else {
             $password = $_POST['password'];
-            if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $password)) {
+            $passwordRegex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
+            if (!preg_match($passwordRegex, $password)) {
                 $error = 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter, one number, and one special character';
                 $password = '';
             }
