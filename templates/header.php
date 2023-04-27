@@ -32,7 +32,7 @@
 
                 <!-- If the user is logged in we give them the option to either visit the
                 account settings page or to logout -->
-                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
                     <li>
                         <a class='dropdown-trigger grey-text text-darken-3' href='#' data-target='dropdown1'>Account</a>
                         <ul id='dropdown1' class='dropdown-content'>
@@ -54,7 +54,7 @@
     <!-- All the same logic follows but this is our responsove design mobile view -->
     <ul class="sidenav" id="mobile-menu">
         <li><a href="/phpizza/order.php" class="orange-text">Order</a></li>
-        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
             <li><a href="/phpizza/account/settings.php" class="orange-text">Settings</a></li>
             <li><a href="#" class="orange-text" onclick="logout()">Logout</a></li>
         <?php else: ?>
