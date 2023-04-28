@@ -34,11 +34,13 @@ Open your browser and navigate to [http://localhost/phpizza](http://localhost/ph
 
 Open your browser and navigate to [http://localhost:8080](http://localhost:8080)
 
-Login using:
+Login using
 
 User: Root
+
 Password: 12345
 
 ## Stopping the Containers
 To stop the running Docker containers, run the following command in the project directory:
+
 docker-compose down
