@@ -4,7 +4,7 @@
 
     /* Currently if the user is logged in we will display all pizza orders
     but will implement the functionaly to only display user's orders soon */
-    if ($_SESSION['loggedin']) {
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         $getAllPizzaOrders = 'SELECT title, toppings, id FROM pizzaOrders ORDER BY created_at';
         $result = mysqli_query($connection, $getAllPizzaOrders);
         if (!$result) {
@@ -21,7 +21,7 @@
 <html lang="en">
     <?php include('templates/header.php'); ?>
     <div class="container">
-        <?php if ($_SESSION['loggedin']): ?>
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']): ?>
             <h4 class="center grey-text">Your Pizza Orders</h4>
         <?php else: ?>
             <h4 class="center grey-text">Pizza Specials</h4>
