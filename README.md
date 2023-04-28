@@ -13,7 +13,7 @@ Before you start, ensure you have the following software installed on your machi
 ## Getting Started
 
 1. Clone the repository to your local machine:
-git clone https://github.com/yourusername/phpizza.git
+git clone https://github.com/Eelli002/PHPizza.git
 
 2. Change to the project directory:
 cd phpizza
