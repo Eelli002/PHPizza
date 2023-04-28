@@ -23,14 +23,14 @@ services:
       - ./db/db_data/data:/var/lib/mysql
       - ./db/db_init:/docker-entrypoint-initdb.d
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   environment:
-  #     PMA_HOST: db
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
 # volumes:
 #   db_data
