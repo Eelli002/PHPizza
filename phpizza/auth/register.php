@@ -8,14 +8,9 @@
     $passwordConfirmation = '';
     $errors = ['firstName'=>'', 'lastName'=>'', 'email'=>'', 'password'=>'', 'passwordConfirmation'=>'', 'emailInUse' => ''];
 
-
-    if (formSubmitted() && inputsValid()) {
-        if (isNotUser($email)) {
-            createNewUser($firstName, $lastName, $email, $password);
-            login($email);
-        } else {
-            $errors['emailInUse'] = "The email is already associated with an account. <a href='/phpizza/auth/login.php'>Click here to log in.</a>";
-        }
+    if (formSubmitted() && inputsValid() && isNotUser($email)) {
+        createNewUser($firstName, $lastName, $email, $password);
+        login($email);
     }
 
     /* Checks if the form has been submitted by verifying if the 
@@ -144,6 +139,9 @@
         $stmt->store_result();
 
         $userExists = $stmt->num_rows > 0;
+        if ($userExists) {
+            $GLOBALS['errors']['emailInUse'] = "The email is already associated with an account. <a href='/phpizza/auth/login.php'>Click here to log in.</a>";
+        }
 
         $stmt->close();
         $connection->close();
