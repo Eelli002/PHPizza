@@ -1,7 +1,7 @@
 FROM php:8.2.4-apache
 
 RUN docker-php-ext-install mysqli
-RUN a2enmod rewrite
+# RUN a2enmod rewrite
 
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug

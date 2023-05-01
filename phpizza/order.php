@@ -1,5 +1,6 @@
 <?php 
     // Upon initial page load we will have blank inputs thus no errors
+    session_start();
     $email = '';
     $title = '';
     $toppings = '';
