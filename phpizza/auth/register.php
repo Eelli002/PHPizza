@@ -184,33 +184,33 @@
             <form method="post" action="register.php">
             <div class="row">
                 <div class="input-field col s12 m6">
-                <input id="first_name" type="text" name="first_name" required>
-                <label for="first_name">First Name</label>
+                <label>First Name</label>
+                <input type="text" name="first_name" value="<?php $formData['firstName'] ?>" required>
                 <div class="red-text"><?php echo htmlspecialchars($errors['firstName']);?></div>
                 </div>
                 <div class="input-field col s12 m6">
-                <input id="last_name" type="text" name="last_name" required>
+                <input type="text" name="last_name" value="<?php $formData['lastName'] ?>" required>
                 <label for="last_name">Last Name</label>
                 <div class="red-text"><?php echo htmlspecialchars($errors['lastName']);?></div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="email" type="email" name="email" required>
+                <input type="email" name="email" value="<?php $formData['email'] ?>" required>
                 <label for="email">Email</label>
                 <div class="red-text"><?php echo htmlspecialchars($errors['email']);?></div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="password" type="password" name="password" required>
+                <input type="password" name="password" required>
                 <label for="password">Password</label>
                 <div class="red-text"><?php echo htmlspecialchars($errors['password']);?></div>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="password_confirmation" type="password" name="password_confirmation" required>
+                <input type="password" name="password_confirmation" required>
                 <label for="password_confirmation">Confirm Password</label>
                 <div class="red-text"><?php echo htmlspecialchars($errors['passwordConfirmation']);?></div>
                 </div>

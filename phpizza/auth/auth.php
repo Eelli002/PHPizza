@@ -14,7 +14,7 @@
                 <a href="login.php" class="btn orange waves-effect waves-light">Log in</a>
             </div>
             <div class="col s12 m6">
-                <a href="register.php" class="btn blue-grey waves-effect waves-light">Register</a>
+                <a href="register/controller.php" class="btn blue-grey waves-effect waves-light">Register</a>
             </div>
             </div>
         </div>
